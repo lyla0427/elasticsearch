@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 
-from apps.views import ArticleDocumentView
+from apps.views import ArticleDocumentView, ArticleView
 
 router = routers.SimpleRouter(trailing_slash=False)
 
-router.register(r'article-search', ArticleDocumentView, basename='article-search')
+router.register(r'articles-es', ArticleDocumentView, basename='article')
+router.register(r'articles-drf', ArticleView, basename='article')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

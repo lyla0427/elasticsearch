@@ -134,5 +134,5 @@ ELASTICSEARCH_DSL = {
 }
 
 ELASTICSEARCH_INDEX_NAMES = {
-    'apps.article' : 'articles',
+    'apps.article': 'articles',
 }

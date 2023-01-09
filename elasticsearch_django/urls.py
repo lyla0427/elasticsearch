@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 
-from apps.views import ArticleDocumentView, ArticleView
+from apps.views import ArticleDocumentView, ArticleView, ArticleESView
 
 router = routers.SimpleRouter(trailing_slash=False)
 
-router.register(r'articles-es', ArticleDocumentView, basename='article')
-router.register(r'articles-drf', ArticleView, basename='article')
+router.register(r'articles-drf', ArticleDocumentView, basename='article')
+router.register(r'articles-dsl', ArticleView, basename='article')
+router.register(r'articles-es', ArticleESView, basename='article')
+
 
 
 urlpatterns = [

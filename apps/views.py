@@ -35,9 +35,22 @@ class ArticleView(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
 
     def get_queryset(self):
-        search = self.request.query_params.get("search")
+        title = self.request.query_params.get("title")
         qs = Article.objects.all()
-        if search:
-            s = ArticleDocument.search().query("match", title=search)[:5]
+        if title:
+            s = ArticleDocument.search().query("match_phrase", title=title)[:5]
             qs = s.to_queryset()
         return qs
+
+
+class ArticleESView(viewsets.ModelViewSet):
+    serializer_class = ArticleSerializer
+
+    def get_queryset(self):
+        title = self.request.query_params.get("title")
+        qs = Article.objects.all()
+        id_list = []
+        if title:
+            results = ArticleDocument.search().query("match_phrase", title=title)[:5]
+            id_list = [result.meta.id for result in results]
+        return qs.filter(id__in=id_list)

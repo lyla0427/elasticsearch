@@ -10,6 +10,7 @@ class ArticleDocumentSerializer(DocumentSerializer):
         document = ArticleDocument
 
         fields = (
+            'id',
             'title',
             'category'
         )
@@ -20,6 +21,7 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
 
         fields = (
+            'id',
             'title',
             'category'
         )
